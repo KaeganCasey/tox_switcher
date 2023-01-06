@@ -11,21 +11,14 @@ engine1 = op('engine1')
 engine2 = op('engine2')
 
 def onOffToOn(channel, sampleIndex, val, prev):
-	engine1.par.play = 1
-	engine2.par.play = 1
+	parent.ToxSwitcher.PlayBothEngines()
 	return
 
 def whileOn(channel, sampleIndex, val, prev):
 	return
 
 def onOnToOff(channel, sampleIndex, val, prev):
-	current_index = parent.ToxSwitcher.par.Currentindex
-
-	# turn off whatever engine is not being displayed
-	if current_index == 0:
-		engine2.par.play = 0
-	elif current_index == 1:
-		engine1.par.play = 0
+	parent.ToxSwitcher.DisableNonDisplayedEngine()
 	return
 
 def whileOff(channel, sampleIndex, val, prev):
